@@ -15,7 +15,7 @@
     "B2C",
     "eletrônico"
   ],
-  "author": "Evilazio Neto",
+  "author": "Raissia Freitas",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
