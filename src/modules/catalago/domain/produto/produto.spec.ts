@@ -30,13 +30,13 @@ beforeAll(async () => {
     ValorMinProdutoInvalido = faker.number.int({min: -10,max: 0});
 
 
-    const catetegoriaValida01 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
-    const catetegoriaValida02 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
-    const catetegoriaValida03 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
-    const catetegoriaValida04 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
-    CategoriasValidas = faker.helpers.arrayElements<Categoria>([catetegoriaValida01, catetegoriaValida02, catetegoriaValida03], {min: 1, max: 3});
+    const categoriaValida01 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
+    const categoriaValida02 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
+    const categoriaValida03 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
+    const categoriaValida04 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
+    CategoriasValidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min: 1, max: 3});
     CategoriasQtdMinInvalidas = [];
-    CategoriasQtdMaxInvalidas = faker.helpers.arrayElements<Categoria>([catetegoriaValida01, catetegoriaValida02, catetegoriaValida03, catetegoriaValida04], {min: 4, max: 3});
+    CategoriasQtdMaxInvalidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03, categoriaValida04], {min: 4, max: 3});
 });
 describe ('Entidade de domínio: Criar Produto', () => {
     test('Deve criar um produto válido', async () => {

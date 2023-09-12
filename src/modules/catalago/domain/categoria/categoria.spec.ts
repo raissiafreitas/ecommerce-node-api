@@ -1,10 +1,10 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, beforeAll} from 'vitest';
 import { IDEntityUUIDInvalid } from '../../../../shared/domain/domain.exception';
 import { Categoria } from './categoria.entity';
 import { NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from './categoria.exception';
 import { CriarCategoriaProps, RecuperarCategoriaProps } from './categoria.types';
 import { faker } from '@faker-js/faker';
-import { before } from 'node:test';
+
 
 //Suite de testes de Unidade - Entidade de Domínio
 
@@ -61,7 +61,7 @@ describe('Entidade de Domínio: Categoria (Recuperar)', () => {
 
         //Dado (Given)
         const categoriaValida: RecuperarCategoriaProps = {
-            id: UUIDInvalido,
+            id:  UUIDValido,
             nome: nomeCategoriaValido,
 
         };
