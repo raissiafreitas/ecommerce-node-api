@@ -1,53 +1,51 @@
-
-import { Categoria } from "../categoria/categoria.entity";
-import { CriarProdutoProps } from "./produto.types";
-import { expect, test, beforeAll, describe } from "vitest";
-import { Produto } from "./produto.entity";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
 import { faker } from '@faker-js/faker';
+import { beforeAll, describe, expect, test } from "vitest";
+import { Categoria } from "../categoria/categoria.entity";
+import { Produto } from "./produto.entity";
+import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido,QtdMaximaCategoriaProdutoInvalida,QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import { CriarProdutoProps } from "./produto.types";
 
-let NomeProdutoValido: string;
-let NomeProdutoTamanhoMinInvalido: string;
-let NomeProdutoTamanhoMaxInvalido: string;
-let DescricaoProdutoValido: string;
+let nomeProdutoValido: string;
+let nomeProdutoTamanhoMinInvalido: string;
+let nomeProdutoTamanhoMaxInvalido: string;
+let descricaoProdutoValido: string;
 let descricaoProdutoMinInvalido: string;
 let descricaoProdutoMaxInvalido: string;
-let ValorProdutoValido: number;
-let ValorMinProdutoInvalido: number;
-let CategoriasValidas: Array<Categoria>;
-let CategoriasQtdMinInvalidas: Array<Categoria>;
-let CategoriasQtdMaxInvalidas: Array<Categoria>;
+let valorProdutoValido: number;
+let valorMinProdutoInvalido: number;
+let categoriasValidas: Array<Categoria>;
+let categoriasQtdMinInvalidas: Array<Categoria>;
+let categoriasQtdMaxInvalidas: Array<Categoria>;
 
 beforeAll(async () => {
 
-    NomeProdutoValido = faker.string.alpha({length:{min:5,max:50}});
-    NomeProdutoTamanhoMinInvalido = faker.string.alpha({length:{min:0,max:4}});
-    NomeProdutoTamanhoMaxInvalido = faker.string.alpha({length:{min:51,max:51}});
-    DescricaoProdutoValido = faker.string.alpha({length:{min:10,max:200}});
+    nomeProdutoValido = faker.string.alpha({length:{min:5,max:50}});
+    nomeProdutoTamanhoMinInvalido = faker.string.alpha({length:{min:0,max:4}});
+    nomeProdutoTamanhoMaxInvalido = faker.string.alpha({length:{min:51,max:51}});
+    descricaoProdutoValido = faker.string.alpha({length:{min:10,max:200}});
     descricaoProdutoMinInvalido = faker.string.alpha({length:{min:0,max:9}});
     descricaoProdutoMaxInvalido = faker.string.alpha({length:{min:201,max:201}});
-    ValorProdutoValido = faker.number.int({min: 1,max: 2000});
-    ValorMinProdutoInvalido = faker.number.int({min: -10,max: 0});
+    valorProdutoValido = faker.number.int({min: 1,max: 2000});
+    valorMinProdutoInvalido = faker.number.int({min: -10,max: 0});
 
 
     const categoriaValida01 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
     const categoriaValida02 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
     const categoriaValida03 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
     const categoriaValida04 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});
-    CategoriasValidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min: 1, max: 3});
-    CategoriasQtdMinInvalidas = [];
-    CategoriasQtdMaxInvalidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03, categoriaValida04], {min: 4, max: 3});
+    categoriasValidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min: 1, max: 3});
+    categoriasQtdMinInvalidas = [];
+    categoriasQtdMaxInvalidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03, categoriaValida04], {min: 4, max: 4});
 });
+
 describe ('Entidade de domínio: Criar Produto', () => {
+
     test('Deve criar um produto válido', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoValido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'Toalha de algodão',
-            valor: 10,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
             categorias: categoriasValidas
         };
 
@@ -57,13 +55,10 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
     test('Não deve criar um produto com nome inválido(Tamanho Mínimo)', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toa',
-            descricao: 'Toalha de algodão',
-            valor: 10,
+            nome: nomeProdutoTamanhoMinInvalido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
             categorias: categoriasValidas
         };
 
@@ -73,13 +68,10 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
     test('Não deve criar um produto com nome inválido(Tamanho Maxima)', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toahsagaydajçl´lkpouoyohjpddifjpsosaioyudyfosdhshdo',
-            descricao: 'Toalha de algodão',
-            valor: 10,
+            nome: nomeProdutoTamanhoMaxInvalido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
             categorias: categoriasValidas
         };
 
@@ -89,13 +81,10 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
     test('Não deve criar um produto com Descrição inválida(Tamanho Mínimo)', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'Algodão',
-            valor: 10,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoMinInvalido,
+            valor: valorProdutoValido,
             categorias: categoriasValidas
         };
 
@@ -105,13 +94,10 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
     test('Não deve criar um produto com Descrição inválida(Tamanho Maximo)', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'hkgjaakjjkjfãjpdjfpieugerupgojrepigjpiugpiroeiutiprupisdpgkhaglhaklghLKHPKIJGKPHGFHGJLFHGAHKLDHGGhghfhgffghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhgggggggggggggggggggggggggggggggggggggfffffffffffff',
-            valor: 10,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoMaxInvalido,
+            valor: valorProdutoValido,
             categorias: categoriasValidas
         };
 
@@ -121,13 +107,10 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
     test('Não deve criar um produto com valor minimo inválido', async () => {
 
-        let categoriasValidas: Array<Categoria> = [];
-        categoriasValidas.push(Categoria.criar({ nome: 'Banho'}));
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'Toalha de banho',
-            valor: -50,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorMinProdutoInvalido,
             categorias: categoriasValidas
         };
 
@@ -137,13 +120,11 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
      test('Não deve criar um produto com número minimo de categorias inválido', async () => {
 
-        let categoriasQTdMinInvalidas: Array<Categoria> = [];
-
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'Toalha de banho',
-            valor: 10,
-            categorias: categoriasQTdMinInvalidas
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriasQtdMinInvalidas
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
@@ -152,20 +133,15 @@ describe ('Entidade de domínio: Criar Produto', () => {
 
      test('Não deve criar um produto com número maximo de categorias inválido', async () => {
 
-        let categoriasQTdMaxInvalidas: Array<Categoria> = [];
-        categoriasQTdMaxInvalidas.push(Categoria.criar({ nome : 'Cama'}));
-        categoriasQTdMaxInvalidas.push(Categoria.criar({ nome : 'Mesa'}));
-        categoriasQTdMaxInvalidas.push(Categoria.criar({ nome : 'Banho'}));
-        categoriasQTdMaxInvalidas.push(Categoria.criar({ nome : 'Enxoval'}));
-       
         const produtoNomeInvalido: CriarProdutoProps = {
-            nome: 'Toalha',
-            descricao: 'Toalha de banho',
-            valor: 10,
-            categorias: categoriasQTdMaxInvalidas
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriasQtdMaxInvalidas
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
             .toThrowError(QtdMaximaCategoriaProdutoInvalida);
     });
-})
+
+});   

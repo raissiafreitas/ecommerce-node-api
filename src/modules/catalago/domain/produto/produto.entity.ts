@@ -2,7 +2,7 @@ import { Entity } from "../../../../shared/domain/entity";
 import { ProdutoMap } from "../../mappers/produto.map";
 import { Categoria } from "../categoria/categoria.entity";
 import { NomeCategoriaTamanhoMaximoInvalido } from "../categoria/categoria.exception";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
 import { CriarProdutoProps, IProduto, RecuperarProdutoProps } from "./produto.types";
 
 class Produto extends Entity<IProduto> implements IProduto {
@@ -20,7 +20,7 @@ class Produto extends Entity<IProduto> implements IProduto {
             throw new NomeProdutoTamanhoMinimoInvalido();
         }
         if (value.trim().length > 50 ) {
-            throw new NomeCategoriaTamanhoMaximoInvalido();
+            throw new NomeProdutoTamanhoMaximoInvalido;
         }
         this._nome = value;
         
@@ -63,7 +63,7 @@ class Produto extends Entity<IProduto> implements IProduto {
         if (value.length > 3 ) {
             throw new QtdMaximaCategoriaProdutoInvalida();
         }
-        this.categorias = value;
+        this._categorias = value;
         
     }
 
