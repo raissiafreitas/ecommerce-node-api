@@ -1,13 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram id="ddDUZ0oviB58H6_pVTwg" name="Arquitetura em camadas">
-        <mxGraphModel dx="354" dy="354" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="721" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="ecommerce-node-api (back-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;" parent="1" vertex="1">
+                <mxCell id="2" value="ecommerce-node-api (back-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;fillColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="100" y="176" width="420" height="654" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="ecommerce-web-app (front-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;" parent="1" vertex="1">
+                <mxCell id="4" value="ecommerce-web-app (front-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;fillColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="100" y="57" width="420" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="Database (Relacional)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;" parent="1" vertex="1">
@@ -102,7 +102,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Arquitetura em Hexagonal" id="o11fhxP_GC8ciULLZor4">
-        <mxGraphModel dx="843" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1204" dy="1984" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="tC848CAqKd5zq7unI5WD-0"/>
                 <mxCell id="tC848CAqKd5zq7unI5WD-1" parent="tC848CAqKd5zq7unI5WD-0"/>
@@ -112,20 +112,20 @@
                 <mxCell id="tSpNc62gYQ9kwC4Bi7KC-9" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;fontColor=default;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="tC848CAqKd5zq7unI5WD-1" source="By7jdL-Fttb47xRQV21P-1" target="4fA0GQ-itj5hUXOicgAi-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="tC848CAqKd5zq7unI5WD-2" value="ecommerce-node-api (back-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
+                <mxCell id="tC848CAqKd5zq7unI5WD-2" value="ecommerce-node-api (back-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;fillColor=#666666;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
                     <mxGeometry x="38" y="-30" width="670" height="810" as="geometry"/>
                 </mxCell>
-                <mxCell id="tC848CAqKd5zq7unI5WD-3" value="ecommerce-web-app (front-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
-                    <mxGeometry x="46" y="54" width="664" height="100" as="geometry"/>
+                <mxCell id="tC848CAqKd5zq7unI5WD-3" value="ecommerce-web-app (front-end)" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;strokeWidth=2;fillColor=#666666;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
+                    <mxGeometry x="44" y="-142" width="664" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="tC848CAqKd5zq7unI5WD-4" value="Database (Relacional)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
                     <mxGeometry x="313" y="810" width="130" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="tC848CAqKd5zq7unI5WD-9" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#d80073;fontColor=#ffffff;strokeColor=#A50040;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
-                    <mxGeometry x="56" y="86" width="634" height="60" as="geometry"/>
+                    <mxGeometry x="49" y="-110" width="634" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="tC848CAqKd5zq7unI5WD-10" value="Interface Do Usuário" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;" parent="tC848CAqKd5zq7unI5WD-1" vertex="1">
-                    <mxGeometry x="108" y="89" width="150" height="30" as="geometry"/>
+                    <mxGeometry x="90" y="-107" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="tSpNc62gYQ9kwC4Bi7KC-10" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;fontColor=default;endArrow=none;endFill=0;" parent="tC848CAqKd5zq7unI5WD-1" source="By7jdL-Fttb47xRQV21P-1" target="4fA0GQ-itj5hUXOicgAi-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
