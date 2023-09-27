@@ -1,67 +1,67 @@
-import { Categoria } from "@modules/catalago/domain/categoria/categoria.entity";
-import { PrismaClient } from "@prisma/client";
-import { DomainException } from "@shared/domain/domain.exception";
+import { Categoria } from '@modules/catalago/domain/categoria/categoria.entity';
+import { CategoriaPrismaRepository } from '@modules/catalago/infra/database/categoria.prisma.repository';
+import { PrismaClient } from '@prisma/client';
+import { DomainException } from '@shared/domain/domain.exception';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+    log: ['query', 'info'],
+    errorFormat: 'pretty'
+});
 
 async function main() {
+   
+    prisma.$connect().then(
+        async () => {
+            console.log('Postgres Conectado');
+        }
+    );
 
-   ////////////////// 
-   //Criar Categoria//
-  //////////////////
+    const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-// let categoria: Categoria
-// categoria = Categoria.criar({nome: 'mesa'});
+    //const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("c2666bdb-c055-40bb-951b-32f899f41e30");
+
+    //console.log(categoriaRecuperada);
+
+    // const categoria: Categoria = Categoria.criar({
+    //     nome:'Banho'
+    // })    
+
+    // const categoriaInserida = await categoriaRepo.inserir(categoria);
+
+    // console.log(categoriaInserida);
+
+    // const recuperarTodos = await categoriaRepo.recuperarTodos();
+    // console.log(recuperarTodos);
+    
+    // const categoria = Categoria.recuperar({
+    //     id: "bea4be1a-316a-419b-af0f-3444a6470608",
+    //     nome: "Mesa"
+    // })    
+
+    // const categoriaAtualizada = await categoriaRepo.atualizar(categoria.id,categoria);
+
+    // console.log(categoriaAtualizada)
 
     
-//    ////////////////////////////// 
-//    Persistir Categoria no banco//
-//   //////////////////////////////
+    const categoriaDeletada = await categoriaRepo.deletar("c2666bdb-c055-40bb-951b-32f899f41e30");
+    console.log(categoriaDeletada)
 
-// await prisma.categoria.create({
-//     data: {
-//         id: categoria.id,
-//         nome: categoria.nome
-
-//        }
-//     })
-
-    //////////////////////////////// 
-   //Atualizar Categoria no banco//
-  ////////////////////////////////
-
-    const categoriaRecuperada = await prisma.categoria.update ({
-        where: {id: "8127eb75-c156-4dbf-83e1-eb49ffeeb7ac"},
-        data: {nome: 'banho'},
-    })
-
-    
-   ////////////////// 
-   //Listar Categoria//
-  //////////////////
-    
-    const ListaCategorias = await prisma.categoria.findMany();
-    console.log(ListaCategorias);
 }
 
+
 main()
-    .then(async() => {
+    .then(async () => {
         await prisma.$disconnect()
     })
-
     .catch(async (error) => {
-        if (error instanceof DomainException) {
-            console.log('Execeção de domínio')
-            console.log(error.message)
-        }
-
-        else {
-            console.log('Outras execeções')
-            console.log(error.message)
-        }
-
-        await prisma.$disconnect()
-        process.exit(1)
-        
-     
-    })
+       if (error instanceof DomainException) {
+           console.log('Execeção de Dóminio');
+           console.log(error.message);
+       }
+       else {
+           console.log('Outras Exceções');
+           console.log(error.message);
+       }
+       await prisma.$disconnect()
+       process.exit(1)
+   })
