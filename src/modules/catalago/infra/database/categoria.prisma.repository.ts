@@ -16,10 +16,8 @@ class CategoriaPrismaRepository
             }
         )
         if (categoriaRecuperada) {
-            return CategoriaMap.toDomain({
-                id: categoriaRecuperada.id,
-                nome: categoriaRecuperada.nome
-            })
+            return CategoriaMap.fromPrismaModelToDomain (categoriaRecuperada)
+            
         }
         return null;
     }
@@ -27,12 +25,7 @@ class CategoriaPrismaRepository
     async recuperarTodos(): Promise<Array<Categoria>> {
         const categoriasRecuperadas = await this._datasource.categoria.findMany();
         const categorias = categoriasRecuperadas.map(
-            (categoria) => CategoriaMap.toDomain(
-                {
-                    id: categoria.id,
-                    nome: categoria.nome
-                }
-            )
+            (categoria) => CategoriaMap.fromPrismaModelToDomain(categoria)
         )
         return categorias;
     }

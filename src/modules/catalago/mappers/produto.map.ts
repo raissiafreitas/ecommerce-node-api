@@ -16,6 +16,7 @@ class ProdutoMap {
     public static toDomain(produto: RecuperarProdutoProps): Produto {
         return Produto.recuperar((produto));
     }
+    
 
 }
 

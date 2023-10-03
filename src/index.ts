@@ -18,17 +18,13 @@ async function main() {
 
     const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-    //const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("c2666bdb-c055-40bb-951b-32f899f41e30");
+    const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("8127eb75-c156-4dbf-83e1-eb49ffeeb7ac");
 
-    //console.log(categoriaRecuperada);
+    console.log(categoriaRecuperada);
 
     // const categoria: Categoria = Categoria.criar({
     //     nome:'Banho'
     // })    
-
-    // const categoriaInserida = await categoriaRepo.inserir(categoria);
-
-    // console.log(categoriaInserida);
 
     // const recuperarTodos = await categoriaRepo.recuperarTodos();
     // console.log(recuperarTodos);
@@ -38,14 +34,29 @@ async function main() {
     //     nome: "Mesa"
     // })    
 
-    // const categoriaAtualizada = await categoriaRepo.atualizar(categoria.id,categoria);
-
     // console.log(categoriaAtualizada)
 
-    
-    const categoriaDeletada = await categoriaRepo.deletar("c2666bdb-c055-40bb-951b-32f899f41e30");
-    console.log(categoriaDeletada)
+    // const esxisteCategoria: boolean = await categoriaRepo.existe("bea4be1a-316a-419b-af0f-3444a6470608")
+    // console.log(esxisteCategoria)
 
+    // const categoria: Categoria = Categoria.criar({
+    //     nome: 'Sala e quarto'
+    // })
+    // const categoriaInserida = await categoriaRepo.inserir(categoria);
+
+    // console.log(categoriaInserida);
+
+//     const categoria: Categoria = Categoria.recuperar({
+//         id: "8127eb75-c156-4dbf-83e1-eb49ffeeb7ac",
+//         nome: "Banho"
+//     })
+    
+//    const atualizouCategoria: boolean = await categoriaRepo.atualizar(categoria.id,categoria);
+//      console.log(atualizouCategoria);
+
+
+    const categoriaDeletada = await categoriaRepo.deletar("f040e543-fad0-453e-8c17-04db0e83fcc4");
+    console.log(categoriaDeletada)
 }
 
 
