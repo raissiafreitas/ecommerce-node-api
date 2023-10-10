@@ -23,7 +23,7 @@ async recuperarPorUuid(uuid: string): Promise<Produto | null> {
     }
     return null;
 }
-async recuperarTodos(): Promise<Array<Produto>> {
+async recuperarTodos(): Promise<Produto[]> {
        
     const produtosRecuperados = await this._datasource.produto.findMany({
         include: produtoIncludeCategoriaPrisma
