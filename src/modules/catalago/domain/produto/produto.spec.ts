@@ -26,7 +26,7 @@ beforeAll(async () => {
     descricaoProdutoMinInvalido = faker.string.alpha({length:{min:0,max:9}});
     descricaoProdutoMaxInvalido = faker.string.alpha({length:{min:201,max:201}});
     valorProdutoValido = faker.number.int({min: 1,max: 2000});
-    valorMinProdutoInvalido = faker.number.int({min: -10,max: 0});
+    valorMinProdutoInvalido = faker.number.int({min: -10,max: -1});
 
 
     const categoriaValida01 = Categoria.criar({nome: faker.string.alpha({length: {min:3,max: 50}})});

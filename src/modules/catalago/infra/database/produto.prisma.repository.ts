@@ -26,6 +26,9 @@ async recuperarPorUuid(uuid: string): Promise<Produto | null> {
 async recuperarTodos(): Promise<Produto[]> {
        
     const produtosRecuperados = await this._datasource.produto.findMany({
+        where: {
+            dataExclusao: null
+        },
         include: produtoIncludeCategoriaPrisma
     });
 

@@ -52,14 +52,14 @@ async function main() {
 
 //     const categoria: Categoria = Categoria.recuperar({
 //         id: "8127eb75-c156-4dbf-83e1-eb49ffeeb7ac",
-//         nome: "Banho"
+//         nome: "Cozinha Americana"
 //     })
     
 //    const atualizouCategoria: boolean = await categoriaRepo.atualizar(categoria.id,categoria);
 //      console.log(atualizouCategoria);
 
 
-    // const categoriaDeletada = await categoriaRepo.deletar("f040e543-fad0-453e-8c17-04db0e83fcc4");
+    // const categoriaDeletada = await categoriaRepo.deletar("8127eb75-c156-4dbf-83e1-eb49ffeeb7ac")
     // console.log(categoriaDeletada)
 
 //    const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("d4e05fd6-973f-4692-91fe-744a76d263e7");
@@ -76,10 +76,10 @@ async function main() {
 // });
 
 // const produto: Produto = Produto.criar({
-//     nome:'Toalha de cama',
+//     nome:'Toalha de cozinha',
 //     descricao:'toalha de algodão',
-//     valor:100,
-//     categorias:[categoria02]
+//     valor:85,
+//     categorias:[categoria01, categoria02]
 //  });
 
 // const produtoInserido = await produtoRepo.inserir(produto);
@@ -91,13 +91,16 @@ async function main() {
 // console.log(todosProdutos);
 
 // const produto = {
-//     id: "d4e05fd6-973f-4692-91fe-744a76d263e7",
-//     nome: "Toalha de Mesa Grande",
+//     id: "7fff2d25-d734-48ae-bc82-97881f0174cd",
+//     nome: "Toalha de cozinha",
 //     descricao: "Toalha de algodão",
-//     valor: 85
+//     valor: 200
 // }
-//  const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id, produto)
+//   const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id, produto)
 
+//  const produtoDeletado: boolean = await produtoRepo.deletar("7fff2d25-d734-48ae-bc82-97881f0174cd")
+
+// console.log(produtoDeletado);
 }
 
 

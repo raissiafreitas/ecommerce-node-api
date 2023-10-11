@@ -10,6 +10,10 @@ class Produto extends Entity<IProduto> implements IProduto {
     private _descricao: string;
     private _valor: number;
     private _categorias: Array<Categoria>;
+    private _dataCriacao?: Date | undefined;
+    private _dataAtualizacao?: Date | undefined;
+    private _dataExclusao?: Date | null | undefined;
+   
 
     public get nome(): string {
         return this._nome;
@@ -73,6 +77,9 @@ class Produto extends Entity<IProduto> implements IProduto {
         this.descricao = produto.descricao;
         this.valor = produto.valor;
         this.categorias = produto.categorias;
+        this._dataCriacao = produto.dataCriacao;
+        this._dataAtualizacao = produto.dataAtualizacao;
+        this._dataExclusao = produto.dataExclusao;
     }
 
     public static criar(props: CriarProdutoProps): Produto {
@@ -84,6 +91,30 @@ class Produto extends Entity<IProduto> implements IProduto {
 
     public toDTO(): IProduto {
         return ProdutoMap.toDTO(this);
+    }
+
+    public get dataCriacao(): Date | undefined {
+        return this._dataCriacao;
+    }
+    private set dataCriacao(value: Date | undefined) {
+        this._dataCriacao = value;
+    }
+
+    public get dataAtualizacao(): Date | undefined {
+        return this._dataAtualizacao;
+    }
+    private set dataAtualizacao(value: Date | undefined) {
+        this._dataAtualizacao = value;
+    }
+
+    public get dataExclusao(): Date | null | undefined {
+        return this._dataExclusao;
+    }
+    private set dataExclusao(value: Date | null | undefined) {
+        this._dataExclusao = value;
+    }
+    public estaDeletado(): boolean {
+        return this.dataExclusao !== null ? true : false;
     }
 }
 
