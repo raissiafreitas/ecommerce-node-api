@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, test } from "vitest";
 import { Categoria } from "../categoria/categoria.entity";
 import { Produto } from "./produto.entity";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido,QtdMaximaCategoriaProdutoInvalida,QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import { ProdutoExceptions } from "./produto.exception";
 import { CriarProdutoProps } from "./produto.types";
 
 let nomeProdutoValido: string;
@@ -63,7 +63,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(NomeProdutoTamanhoMinimoInvalido);
+            .toThrowError( ProdutoExceptions.NomeProdutoTamanhoMinimoInvalido);
     });
 
     test('Não deve criar um produto com nome inválido(Tamanho Maxima)', async () => {
@@ -76,7 +76,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(NomeProdutoTamanhoMaximoInvalido);
+            .toThrowError(ProdutoExceptions.NomeProdutoTamanhoMaximoInvalido);
     });
 
     test('Não deve criar um produto com Descrição inválida(Tamanho Mínimo)', async () => {
@@ -89,7 +89,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(DescricaoProdutoTamanhoMinimoInvalido);
+            .toThrowError(ProdutoExceptions.DescricaoProdutoTamanhoMinimoInvalido);
     });
 
     test('Não deve criar um produto com Descrição inválida(Tamanho Maximo)', async () => {
@@ -102,7 +102,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(DescricaoProdutoTamanhoMaximoInvalido);
+            .toThrowError(ProdutoExceptions.DescricaoProdutoTamanhoMaximoInvalido);
     });
 
     test('Não deve criar um produto com valor minimo inválido', async () => {
@@ -115,7 +115,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(ValorMinimoProdutoInvalido);
+            .toThrowError(ProdutoExceptions.ValorMinimoProdutoInvalido);
     });
 
      test('Não deve criar um produto com número minimo de categorias inválido', async () => {
@@ -128,7 +128,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(QtdMinimaCategoriaProdutoInvalida);
+            .toThrowError(ProdutoExceptions.QtdMinimaCategoriaProdutoInvalida);
     });
 
      test('Não deve criar um produto com número maximo de categorias inválido', async () => {
@@ -141,7 +141,7 @@ describe ('Entidade de domínio: Criar Produto', () => {
         };
 
         expect(() => Produto.criar(produtoNomeInvalido))
-            .toThrowError(QtdMaximaCategoriaProdutoInvalida);
+            .toThrowError(ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida);
     });
 
 });   

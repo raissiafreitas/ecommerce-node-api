@@ -2,7 +2,7 @@ import { Entity } from "../../../../shared/domain/entity";
 import { ProdutoMap } from "../../mappers/produto.map";
 import { Categoria } from "../categoria/categoria.entity";
 import { NomeCategoriaTamanhoMaximoInvalido } from "../categoria/categoria.exception";
-import { DescricaoProdutoTamanhoMaximoInvalido, DescricaoProdutoTamanhoMinimoInvalido, NomeProdutoTamanhoMaximoInvalido, NomeProdutoTamanhoMinimoInvalido, QtdMaximaCategoriaProdutoInvalida, QtdMinimaCategoriaProdutoInvalida, ValorMinimoProdutoInvalido } from "./produto.exception";
+import { ProdutoExceptions } from "./produto.exception";
 import { CriarProdutoProps, IProduto, RecuperarProdutoProps } from "./produto.types";
 
 class Produto extends Entity<IProduto> implements IProduto {
@@ -15,16 +15,19 @@ class Produto extends Entity<IProduto> implements IProduto {
     private _dataExclusao?: Date | null | undefined;
    
 
+    public static readonly QTD_MINIMA_CATEGORIA = 1;
+    public static readonly QTD_MAXIMA_CATEGORIA = 3;
+
     public get nome(): string {
         return this._nome;
     }
 
     private set nome(value: string) {
         if (value.trim().length < 5 ) {
-            throw new NomeProdutoTamanhoMinimoInvalido();
+            throw new ProdutoExceptions.NomeProdutoTamanhoMinimoInvalido();
         }
         if (value.trim().length > 50 ) {
-            throw new NomeProdutoTamanhoMaximoInvalido;
+            throw new ProdutoExceptions.NomeProdutoTamanhoMaximoInvalido;
         }
         this._nome = value;
         
@@ -35,10 +38,10 @@ class Produto extends Entity<IProduto> implements IProduto {
 
     private set descricao(value: string) {
         if (value.trim().length < 10 ) {
-            throw new DescricaoProdutoTamanhoMinimoInvalido();
+            throw new ProdutoExceptions.DescricaoProdutoTamanhoMinimoInvalido();
         }
         if (value.trim().length > 200 ) {
-            throw new DescricaoProdutoTamanhoMaximoInvalido();
+            throw new ProdutoExceptions.DescricaoProdutoTamanhoMaximoInvalido();
         }
         this._descricao = value;
         
@@ -51,7 +54,7 @@ class Produto extends Entity<IProduto> implements IProduto {
 
     private set valor(value: number) {
         if (value < 0 ) {
-            throw new ValorMinimoProdutoInvalido();
+            throw new ProdutoExceptions.ValorMinimoProdutoInvalido();
         }
         this._valor = value;
     }
@@ -61,11 +64,11 @@ class Produto extends Entity<IProduto> implements IProduto {
     }
 
     private set categorias(value: Array<Categoria>) {
-        if (value.length < 1 ) {
-            throw new QtdMinimaCategoriaProdutoInvalida();
+        if (value.length < Produto.QTD_MINIMA_CATEGORIA ) {
+            throw new ProdutoExceptions.QtdMinimaCategoriaProdutoInvalida();
         }
-        if (value.length > 3 ) {
-            throw new QtdMaximaCategoriaProdutoInvalida();
+        if (value.length > Produto.QTD_MAXIMA_CATEGORIA ) {
+            throw new ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida();
         }
         this._categorias = value;
         
@@ -116,6 +119,34 @@ class Produto extends Entity<IProduto> implements IProduto {
     public estaDeletado(): boolean {
         return this.dataExclusao !== null ? true : false;
     }
+
+    public quantidadeCategoria(): number {
+        return this._categorias.length;
+    }
+
+    public possuiCategoria(categoria: Categoria): boolean {
+        const categoriaExistente = this._categorias.find((categoriaExistente) => categoriaExistente.id == categoria.id)
+   
+        if (categoriaExistente) {
+            return true;
+        }
+      return false
+    }
+
+public adicionarCategoria(categoria: Categoria): Categoria {
+        if (this.quantidadeCategoria() >= Produto. QTD_MAXIMA_CATEGORIA) {
+            throw new ProdutoExceptions.ProdutoJaPossuiQtdMaximaCategorias();
+        }
+
+        if (this.possuiCategoria(categoria)) {
+            throw new ProdutoExceptions.ProdutoJaPossuiCategoriaInformada();
+        }
+
+        this.categorias.push(categoria);
+        return categoria
+}
+
+
 }
 
 export { Produto }

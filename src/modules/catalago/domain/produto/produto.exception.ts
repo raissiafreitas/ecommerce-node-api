@@ -57,20 +57,45 @@ class QtdMinimaCategoriaProdutoInvalida extends ProdutoExeception {
 }
 
 class QtdMaximaCategoriaProdutoInvalida extends ProdutoExeception {
-    public constructor(message:string = 'A quantidade minima de categorias produto é inválida.') {
+    public constructor(message:string = 'A quantidade máxima de categorias produto é inválida.') {
         super(message);
-        this.name = 'QtdMinimaCategoriaProdutoInvalida'
+        this.name = 'QtdMaximaCategoriaProdutoInvalida'
         this.message = message;
     }
+
+}
+
+class ProdutoJaPossuiQtdMaximaCategorias extends ProdutoExeception {
+    public constructor(message:string = 'O produto já possui e quantidade máxima de categorias.') {
+        super(message);
+        this.name = 'ProdutoJaPossuiQtdMaximaCategorias'
+        this.message = message;
+    }
+
+}
+
+class ProdutoJaPossuiCategoriaInformada extends ProdutoExeception {
+    public constructor(message:string = 'O produto já possui categoria informada.') {
+        super(message);
+        this.name = 'ProdutoJaPossuiCategoriaInformada'
+        this.message = message;
+    }
+
+}
+
+const ProdutoExceptions = {
+    ProdutoExeception: ProdutoExeception,
+    NomeProdutoTamanhoMinimoInvalido: NomeProdutoTamanhoMinimoInvalido,
+    NomeProdutoTamanhoMaximoInvalido: NomeProdutoTamanhoMaximoInvalido,
+    DescricaoProdutoTamanhoMinimoInvalido: DescricaoProdutoTamanhoMinimoInvalido,
+    DescricaoProdutoTamanhoMaximoInvalido: DescricaoProdutoTamanhoMaximoInvalido,
+    ValorMinimoProdutoInvalido: ValorMinimoProdutoInvalido,
+    QtdMinimaCategoriaProdutoInvalida: QtdMinimaCategoriaProdutoInvalida,
+    QtdMaximaCategoriaProdutoInvalida: QtdMaximaCategoriaProdutoInvalida,
+    ProdutoJaPossuiQtdMaximaCategorias: ProdutoJaPossuiQtdMaximaCategorias,
+    ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada
 }
 
 export {
-    ProdutoExeception,
-    NomeProdutoTamanhoMinimoInvalido,
-    NomeProdutoTamanhoMaximoInvalido,
-    DescricaoProdutoTamanhoMinimoInvalido,
-    DescricaoProdutoTamanhoMaximoInvalido,
-    ValorMinimoProdutoInvalido,
-    QtdMinimaCategoriaProdutoInvalida,
-    QtdMaximaCategoriaProdutoInvalida
+   ProdutoExceptions
 }
