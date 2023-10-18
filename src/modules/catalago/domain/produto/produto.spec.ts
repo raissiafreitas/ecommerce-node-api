@@ -16,6 +16,10 @@ let valorMinProdutoInvalido: number;
 let categoriasValidas: Array<Categoria>;
 let categoriasQtdMinInvalidas: Array<Categoria>;
 let categoriasQtdMaxInvalidas: Array<Categoria>;
+let UUIDVALIDO: string;
+let categoriasQtdValidaAptaAdicao: Array<Categoria>;
+let categoriasQtdMaxValidaInaptaAdicao: Array<Categoria>;
+let categoriasQtdValidaInaptaAdicaoDuplicacao: Array<Categoria>;
 
 beforeAll(async () => {
 
@@ -36,6 +40,9 @@ beforeAll(async () => {
     categoriasValidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min: 1, max: 3});
     categoriasQtdMinInvalidas = [];
     categoriasQtdMaxInvalidas = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03, categoriaValida04], {min: 4, max: 4});
+    categoriasQtdValidaAptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min: 1, max: 2});
+    categoriasQtdMaxValidaInaptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min: 3, max: 3});
+    categoriasQtdValidaInaptaAdicaoDuplicacao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min: 1, max: 2});
 });
 
 describe ('Entidade de domínio: Criar Produto', () => {
@@ -144,4 +151,15 @@ describe ('Entidade de domínio: Criar Produto', () => {
             .toThrowError(ProdutoExceptions.QtdMaximaCategoriaProdutoInvalida);
     });
 
-});   
+}); 
+
+describe('Entidade de Domínio: Adicionar Categoria ao Produto', () => {
+    test('Deve Adicionar uma categoria válida a um Produto válido apto a ter uma nova categoria', async () => {
+        const produtoValidoAptoNovaCategoria: Produto = Produto.recuperar({
+            id: UUIDVALIDO,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: 
+        })
+    })
+})
