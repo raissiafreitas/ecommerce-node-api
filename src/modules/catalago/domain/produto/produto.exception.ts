@@ -3,7 +3,7 @@ import { DomainException } from "../../../../shared/domain/domain.exception";
 class ProdutoExeception extends DomainException {
     constructor(message:string = 'Execeção de Domínio Genérica da Entidade Produto') {
         super(message);
-        this.name = 'ProdutoException'
+        this.name = 'ProdutoJaPossuiQtdMinimaCategorias'
         this.message = message;
     }
 }
@@ -83,6 +83,17 @@ class ProdutoJaPossuiCategoriaInformada extends ProdutoExeception {
 
 }
 
+class ProdutoNaoPossuiCategoriaInformada extends ProdutoException {
+    public constructor(message:string = 'O produto não possui a categoria informada.') {
+        super(message);
+        this.name = 'ProdutoNaoPossuiCategoriaInformada'
+        this.message = message
+    }
+}
+
+
+
+
 const ProdutoExceptions = {
     ProdutoExeception: ProdutoExeception,
     NomeProdutoTamanhoMinimoInvalido: NomeProdutoTamanhoMinimoInvalido,
@@ -93,7 +104,11 @@ const ProdutoExceptions = {
     QtdMinimaCategoriaProdutoInvalida: QtdMinimaCategoriaProdutoInvalida,
     QtdMaximaCategoriaProdutoInvalida: QtdMaximaCategoriaProdutoInvalida,
     ProdutoJaPossuiQtdMaximaCategorias: ProdutoJaPossuiQtdMaximaCategorias,
-    ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada
+    ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada,
+    ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada,
+    Pr
+
+
 }
 
 export {

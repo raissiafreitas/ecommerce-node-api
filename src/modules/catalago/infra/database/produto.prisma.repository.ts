@@ -1,3 +1,4 @@
+import { Categoria } from "@modules/catalago/domain/categoria/categoria.entity";
 import { Produto } from "@modules/catalago/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalago/domain/produto/produto.repository.interface";
 import { ProdutoMap } from "@modules/catalago/mappers/produto.map";
@@ -8,6 +9,7 @@ import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.typ
 
 
 class ProdutoPrismaRepository extends PrismaRepository implements IProdutoRepository<Produto>{
+
     
    
 async recuperarPorUuid(uuid: string): Promise<Produto | null> {
@@ -88,6 +90,20 @@ async deletar(uuid: string): Promise<boolean> {
     );
     if (produtoDeletado.id) {return true;}
     return false;
+}
+
+async adicionarCategoria(produto: Produto, categoria: Categoria): Promise<boolean> {
+   const categoriaProdutoAdicionada = await this._datasource.produtosCategorias.create(
+    {
+        data:{
+            produtoId: produto.id,
+            categoriaId: categoria.id
+        }
+    }
+   )
+
+   if (categoriaProdutoAdicionada) {return true;}
+   return false;
 }
 }
 

@@ -22,9 +22,9 @@ async function main() {
 
     const produtoRepo = new ProdutoPrismaRepository(prisma);
 
-    const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("8127eb75-c156-4dbf-83e1-eb49ffeeb7ac");
+    // const categoriaRecuperada = await categoriaRepo.recuperarPorUuid("8127eb75-c156-4dbf-83e1-eb49ffeeb7ac");
 
-    console.log(categoriaRecuperada);
+    // console.log(categoriaRecuperada);
 
     // const categoria: Categoria = Categoria.criar({
     //     nome:'Banho'
@@ -86,9 +86,9 @@ async function main() {
 
 //  console.log(produtoInserido);
 
-// const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
+const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
 
-// console.log(todosProdutos);
+console.log(todosProdutos);
 
 // const produto = {
 //     id: "7fff2d25-d734-48ae-bc82-97881f0174cd",
@@ -101,9 +101,21 @@ async function main() {
 //  const produtoDeletado: boolean = await produtoRepo.deletar("7fff2d25-d734-48ae-bc82-97881f0174cd")
 
 // console.log(produtoDeletado);
+
+
+// const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("d4e05fd6-973f-4692-91fe-744a76d263e7");
+
+// const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("bea4be1a-316a-419b-af0f-3444a6470608")
+
+// if (produtoRecuperado && categoriaRecuperada) {
+
+//     if (produtoRecuperado.adicionarCategoria(categoriaRecuperada)) {
+//         await produtoRepo.adicionarCategoria(produtoRecuperado,categoriaRecuperada)
+//     }
+    
+//   }
+
 }
-
-
 main()
     .then(async () => {
         await prisma.$disconnect()
