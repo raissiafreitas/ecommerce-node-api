@@ -146,6 +146,23 @@ public adicionarCategoria(categoria: Categoria): Categoria {
         return categoria
 }
 
+public removerCategoria(categoria: Categoria): Categoria {
+    if (this.quantidadeCategoria() >= Produto. QTD_MINIMA_CATEGORIA) {
+        throw new ProdutoExceptions.ProdutoJaPossuiQtdMinimaCategorias();
+    }
+
+    if (this.possuiCategoria(categoria)) {
+        throw new ProdutoExceptions.ProdutoNaoPossuiCategoriaInformada();
+    }
+
+    this.categorias.filter((categoriaExistente, index, arrayCategoria) => {
+        if (categoriaExistente.id === categoria.id) {
+            arrayCategoria.splice(index, 1)
+        }
+    });
+    return categoria
+}
+
 
 }
 
