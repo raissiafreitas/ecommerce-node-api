@@ -1,22 +1,17 @@
 import { randomUUID } from "crypto";
 import { IDEntityUUIDInvalid } from "./domain.exception";
 
-//Método que verifica se é a instância de uma entidade
+
 const isEntity = (v: any): v is Entity<any> => {
     return v instanceof Entity;
 };
 
 abstract class Entity<T> {
 
-    /////////////
-    //Atributos//
-    /////////////
 
 	private _id: string;
 
-    ///////////////
-    //Gets e Sets//
-    ///////////////
+    
 
     public get id(): string {
         return this._id;
@@ -31,17 +26,11 @@ abstract class Entity<T> {
         this._id = value;
     }
 
-    //////////////
-    //Construtor//
-    //////////////
 
     constructor(id?: string) {
         this.id = id ? id : randomUUID();
     }
 
-    ///////////
-    //Métodos//
-    ///////////
 
     public equals(object?: Entity<T>): boolean {
         if (object == null || object == undefined) {

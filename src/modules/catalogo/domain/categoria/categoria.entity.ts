@@ -5,25 +5,18 @@ import { CriarCategoriaProps, ICategoria, RecuperarCategoriaProps } from "./cate
 
 class Categoria extends Entity<ICategoria> implements ICategoria {
 
-    ///////////////////////
-	//Atributos de Classe//
-	///////////////////////
+ 
 
 	private _nome: string;
     private _dataCriacao?: Date | undefined;
 	private _dataAtualizacao?: Date | undefined;
 
-    //////////////
-    //Constantes//
-    //////////////
+   
 
     public static readonly TAMANHO_MINIMO_NOME = 3;
     public static readonly TAMANHO_MAXIMO_NOME = 50;
     
-    ///////////////
-	//Gets e Sets//
-	///////////////
-   
+    
     public get nome(): string {
         return this._nome;
     }
@@ -63,9 +56,6 @@ class Categoria extends Entity<ICategoria> implements ICategoria {
         this._dataAtualizacao = dataAtualizacao;
     }
 
-    //////////////
-	//Construtor//
-	//////////////
 
     private constructor(categoria:ICategoria){
         super(categoria.id);
@@ -74,9 +64,8 @@ class Categoria extends Entity<ICategoria> implements ICategoria {
         this.dataAtualizacao = categoria.dataAtualizacao;
     }
 
-    /////////////////////////
-    //Static Factory Method//
-    /////////////////////////
+   
+ 
 
     public static criar(props: CriarCategoriaProps): Categoria {
         return new Categoria(props);
@@ -85,10 +74,6 @@ class Categoria extends Entity<ICategoria> implements ICategoria {
     public static recuperar(props: RecuperarCategoriaProps): Categoria {
         return new Categoria(props);
     }
-
-    ///////////
-    //Métodos//
-    ///////////
 
     public toDTO(): ICategoria {
         return CategoriaMap.toDTO(this);

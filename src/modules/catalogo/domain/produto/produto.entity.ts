@@ -7,10 +7,6 @@ import { RecuperarCategoriaProps } from "../categoria/categoria.types";
 
 class Produto extends Entity<IProduto> implements IProduto {
 
-    ///////////////////////
-    //Atributos de Classe//
-    ///////////////////////
-
     private _nome: string;
     private _descricao: string;
     private _valor: number;
@@ -20,9 +16,7 @@ class Produto extends Entity<IProduto> implements IProduto {
 	private _dataExclusao?: Date | null | undefined;
     private _status?: StatusProduto | undefined;
     
-    //////////////
-	//Constantes//
-	//////////////
+ 
 
     public static readonly TAMANHO_MINIMO_NOME = 5;
 	public static readonly TAMANHO_MAXIMO_NOME = 50;
@@ -32,9 +26,7 @@ class Produto extends Entity<IProduto> implements IProduto {
     public static readonly QTD_MINIMA_CATEGORIAS = 1; 
     public static readonly QTD_MAXIMA_CATEGORIAS = 3;
     
-    ///////////////
-    //Gets e Sets//
-    ///////////////
+   
 
     public get nome(): string {
         return this._nome;
@@ -138,9 +130,7 @@ class Produto extends Entity<IProduto> implements IProduto {
         this._status = value;
     }
     
-    //////////////
-    //Construtor//
-    //////////////
+   
 
     private constructor(produto:IProduto){
         super(produto.id);
@@ -154,9 +144,7 @@ class Produto extends Entity<IProduto> implements IProduto {
         this.status = produto.status;
     }
 
-    /////////////////////////
-    //Static Factory Method//
-    /////////////////////////
+    
 
     public static criar(props: CriarProdutoProps): Produto {
         return new Produto(props);
@@ -166,9 +154,7 @@ class Produto extends Entity<IProduto> implements IProduto {
         return new Produto(props);
     }
 
-    ///////////
-    //Métodos//
-    ///////////
+ 
 
     public toDTO(): IProduto {
         return ProdutoMap.toDTO(this);
@@ -219,7 +205,7 @@ class Produto extends Entity<IProduto> implements IProduto {
             throw new ProdutoExceptions.ProdutoNaoPossuiCategoriaInformada();
         }
 
-        //Removendo uma categoria do array
+     
         this.categorias.filter((categoriaExistente, index, arrayCategorias) => {
             if (categoriaExistente.id === categoria.id) {
                 arrayCategorias.splice(index, 1)
