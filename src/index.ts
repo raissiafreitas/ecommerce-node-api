@@ -1,17 +1,19 @@
+
 import { Categoria } from '@modules/catalogo/domain/categoria/categoria.entity';
 import { Produto } from '@modules/catalogo/domain/produto/produto.entity';
 import { StatusProduto } from '@modules/catalogo/domain/produto/produto.types';
 import { CategoriaPrismaRepository } from '@modules/catalogo/infra/database/categoria.prisma.repository';
 import { ProdutoPrismaRepository } from '@modules/catalogo/infra/database/produto.prisma.repository';
 import { DomainException } from '@shared/domain/domain.exception';
-import { prisma } from 'main/infra/database/orm/prisma/client';
+import { prisma } from 'main/infra/database/orm/prisma/client'; 
 import { categoriaRepositorio as categoriaRepo } from '@modules/catalogo/infra/database';
 import { produtoRepositorio as produtoRepo } from '@modules/catalogo/infra/database';
-import { recuperarCategoriaPorIdUseCase } from '@modules/catalogo/application/use-case';
+import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recuperarCategoriaPorIdUseCase, recuperarTodasCategorias } from '@modules/catalogo/application/use-case';
+import { InserirCategoriaUseCase } from '@modules/catalogo/application/use-case/inserir-categoria/inserir-categoria.use.case'; 
 
 
 async function main() {
-    
+   
     prisma.$connect().then(
         async () => {
             console.log('Postgres Conectado');
@@ -21,120 +23,88 @@ async function main() {
     ////////////////////////////////
     //Recuperar Categoria por UUID//
     ////////////////////////////////
-
-    console.log(await recuperarCategoriaPorIdUseCase.execute("a62a06ba-fae3-46f5-8fb8-dc8ca418e785"));
-
-    
-    // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid('5ccdd6ab-d043-42f0-937b-1260fe47886a');
-
-    // console.log(categoriaRecuperada);
+   
+    //console.log(await recuperarCategoriaPorIdUseCase.execute("8d9cffca-4a0e-4964-b115-ef2808253ed5"));
 
     /////////////////////////////////
     //Recuperar Todas as Categorias//
     /////////////////////////////////
-    
-    //const todasCategorias: Array<Categoria> = await categoriaRepo.recuperarTodos();
-
-    //console.log(todasCategorias);
-
-    ////////////////////////////////
-    //Verifica se Existe Categoria//
-    ////////////////////////////////
-    
-    //const existeCategoria: boolean = await categoriaRepo.existe("7061d559-ab25-4182-98ce-170afdf2acd2");
-
-    //console.log(existeCategoria);
+   
+    //console.log(await recuperarTodasCategorias.execute());
 
     /////////////////////
     //Inserir Categoria//
     /////////////////////
-    
-    // const categoria: Categoria = Categoria.criar({
-    //    nome:'Cozinha'
-    // });    
-    
-      
-    // const categoria01: Categoria = Categoria.criar({
-    //     nome:'Sala'
-    //  }); 
+   
+    // console.log(await inserirCategoriaUseCase.execute({
+    //    nome:'Banheiro'
+    // }));
 
-       
-    // const categoriaInserida = await categoriaRepo.inserir(categoria01);
-    
-
-    //console.log(categoriaInserida);
-
-    ///////////////////////
+    ///////////////////////s
     //Atualizar Categoria//
     ///////////////////////
-    
-    //const categoria: Categoria = Categoria.recuperar({
-    //    id: "5ccdd6ab-d043-42f0-937b-1260fe47886a",
+     
+    // console.log(await atualizarCategoriaUseCase.execute({
+    //    id:"fdc2b10d-6c94-45ec-86dc-37504987e01c",
     //    nome: "Cozinha Americana"
-    //});     
-
-   //const atualizouCategoria: boolean = await categoriaRepo.atualizar(categoria.id,categoria);
-
-    //console.log(atualizouCategoria)
+    // }));
 
     /////////////////////
     //Deletar Categoria//
     /////////////////////
-    
-    //const categoriaDeletada: boolean = await categoriaRepo.deletar('5ccdd6ab-d043-42f0-937b-1260fe47886a');
-    
-    //console.log(categoriaDeletada);
+   
+    // console.log(await deletarCategoriaUseCase.execute("fdc2b10d-6c94-45ec-86dc-37504987e01c"));
 
     ////////////////////////////////
-	//Recuperar Produto por UUID//
-	////////////////////////////////
-		
-	//const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("7f35c7f4-ce26-4503-bfce-0afd937adfb8");
+    //Recuperar Produto por UUID//
+    ////////////////////////////////
+       
+    //const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("7f35c7f4-ce26-4503-bfce-0afd937adfb8");
 
-	//console.log(produtoRecuperado);
+    //console.log(produtoRecuperado);
 
     //console.log(produtoRecuperado?.estaDeletado());
 
     ///////////////////
-	//Inserir Produto//
-	///////////////////
-	
-    
-    // const categoria01: Categoria = Categoria.recuperar({
-    //     id: "03f890b0-684a-44ba-a887-170e26bb2cd2",
-    //     nome: 'Cozinha'
-    // });     
+    //Inserir Produto//
+    ///////////////////
+    /*
+   
+    const categoria01: Categoria = Categoria.recuperar({
+        id: "03f890b0-684a-44ba-a887-170e26bb2cd2",
+        nome: 'Cozinha'
+    });    
 
-    // const categoria02: Categoria = Categoria.recuperar({
-    //     id: "fc762da1-8d2c-4ffa-9559-901db94cb92e",
-    //     nome: 'Banho'
-    // })
+    const categoria02: Categoria = Categoria.recuperar({
+        id: "fc762da1-8d2c-4ffa-9559-901db94cb92e",
+        nome: 'Banho'
+    })
 
-    //  const produto: Produto = Produto.criar({
-    //     nome:'Pano de Pratro',
-    //     descricao:'Algodão fio 60',
-    //     valor:30,
-    //     categorias:[categoria01]
-    // });
+    const produto: Produto = Produto.criar({
+        nome:'Pano de Pratro',
+        descricao:'Algodão fio 60',
+        valor:30,
+        categorias:[categoria01]
+    });
 
-	// const produtoInserido = await produtoRepo.inserir(produto);
+    const produtoInserido = await produtoRepo.inserir(produto);
 
-	// console.log(produtoInserido);
-    
+    console.log(produtoInserido);
+    */
 
-    
+   
 
     /////////////////////////////////////////////////
-	//Recuperar Todos os Produtos e Suas Categorias//
-	/////////////////////////////////////////////////
-		
-	// const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
+    //Recuperar Todos os Produtos e Suas Categorias//
+    /////////////////////////////////////////////////
+       
+    //const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
 
-	// console.log(todosProdutos);
+    //console.log(todosProdutos);
 
     ///////////////////////////////////////////////
-	//Atualizar Produto - Sem Atulizar Categorias//
-	///////////////////////////////////////////////
+    //Atualizar Produto - Sem Atulizar Categorias//
+    ///////////////////////////////////////////////
 
     /*
     const produto = {
@@ -142,23 +112,23 @@ async function main() {
         nome: "Toalha de Cozinha",
         descricao: "toalha de algodão",
         valor: 200
-    }; 
+    };
 
     const atualizouProduto: boolean = await produtoRepo.atualizar(produto.id,produto);
-    
+   
     */
     ///////////////////
-	//Deletar Produto//
-	///////////////////
-		
-	//const produtoDeletado: boolean = await produtoRepo.deletar("7d6a14d5-02f3-4b6d-8cb8-8601ff151f10");
+    //Deletar Produto//
+    ///////////////////
+       
+    //const produtoDeletado: boolean = await produtoRepo.deletar("7d6a14d5-02f3-4b6d-8cb8-8601ff151f10");
 
-	//console.log(produtoDeletado);
+    //console.log(produtoDeletado);
 
     ////////////////////////////////////////////
-	//Adicionar e Remover Categoria ao Produto//
-	////////////////////////////////////////////
-    
+    //Adicionar e Remover Categoria ao Produto//
+    ////////////////////////////////////////////
+   
     //const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("737f111b-eba1-457f-9552-5b5f28511d5d");
 
     //const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid("03f890b0-684a-44ba-a887-170e26bb2cd2");
@@ -187,13 +157,13 @@ async function main() {
     //}
 
     ////////////////////////////////////
-	//Recuperar Produtos por Categoria//
-	////////////////////////////////////
-			
-	//const todosProdutosPorCategoria: Array<Produto> = await produtoRepo.recuperarPorCategoria("03f890b0-684a-44ba-a887-170e26bb2cd2");
+    //Recuperar Produtos por Categoria//
+    ////////////////////////////////////
+           
+    //const todosProdutosPorCategoria: Array<Produto> = await produtoRepo.recuperarPorCategoria("03f890b0-684a-44ba-a887-170e26bb2cd2");
 
-	//console.log(todosProdutosPorCategoria);
-    
+    //console.log(todosProdutosPorCategoria);
+   
 
 }
 
