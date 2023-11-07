@@ -7,6 +7,7 @@ import { DomainException } from '@shared/domain/domain.exception';
 import { prisma } from 'main/infra/database/orm/prisma/client';
 import { categoriaRepositorio as categoriaRepo } from '@modules/catalogo/infra/database';
 import { produtoRepositorio as produtoRepo } from '@modules/catalogo/infra/database';
+import { recuperarCategoriaPorIdUseCase } from '@modules/catalogo/application/use-case';
 
 
 async function main() {
@@ -20,10 +21,13 @@ async function main() {
     ////////////////////////////////
     //Recuperar Categoria por UUID//
     ////////////////////////////////
-    
-    //const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid('5ccdd6ab-d043-42f0-937b-1260fe47886a');
 
-    //console.log(categoriaRecuperada);
+    console.log(await recuperarCategoriaPorIdUseCase.execute("a62a06ba-fae3-46f5-8fb8-dc8ca418e785"));
+
+    
+    // const categoriaRecuperada: Categoria | null = await categoriaRepo.recuperarPorUuid('5ccdd6ab-d043-42f0-937b-1260fe47886a');
+
+    // console.log(categoriaRecuperada);
 
     /////////////////////////////////
     //Recuperar Todas as Categorias//
@@ -45,11 +49,18 @@ async function main() {
     //Inserir Categoria//
     /////////////////////
     
-    //const categoria: Categoria = Categoria.criar({
+    // const categoria: Categoria = Categoria.criar({
     //    nome:'Cozinha'
-    //});     
+    // });    
+    
+      
+    // const categoria01: Categoria = Categoria.criar({
+    //     nome:'Sala'
+    //  }); 
 
-    //const categoriaInserida = await categoriaRepo.inserir(categoria);
+       
+    // const categoriaInserida = await categoriaRepo.inserir(categoria01);
+    
 
     //console.log(categoriaInserida);
 
@@ -87,29 +98,29 @@ async function main() {
     ///////////////////
 	//Inserir Produto//
 	///////////////////
-	/*
+	
     
-    const categoria01: Categoria = Categoria.recuperar({
-        id: "03f890b0-684a-44ba-a887-170e26bb2cd2",
-        nome: 'Cozinha'
-    });     
+    // const categoria01: Categoria = Categoria.recuperar({
+    //     id: "03f890b0-684a-44ba-a887-170e26bb2cd2",
+    //     nome: 'Cozinha'
+    // });     
 
-    const categoria02: Categoria = Categoria.recuperar({
-        id: "fc762da1-8d2c-4ffa-9559-901db94cb92e",
-        nome: 'Banho'
-    })
+    // const categoria02: Categoria = Categoria.recuperar({
+    //     id: "fc762da1-8d2c-4ffa-9559-901db94cb92e",
+    //     nome: 'Banho'
+    // })
 
-    const produto: Produto = Produto.criar({
-        nome:'Pano de Pratro',
-        descricao:'Algodão fio 60',
-        valor:30,
-        categorias:[categoria01]
-    });
+    //  const produto: Produto = Produto.criar({
+    //     nome:'Pano de Pratro',
+    //     descricao:'Algodão fio 60',
+    //     valor:30,
+    //     categorias:[categoria01]
+    // });
 
-	const produtoInserido = await produtoRepo.inserir(produto);
+	// const produtoInserido = await produtoRepo.inserir(produto);
 
-	console.log(produtoInserido);
-    */
+	// console.log(produtoInserido);
+    
 
     
 
@@ -117,9 +128,9 @@ async function main() {
 	//Recuperar Todos os Produtos e Suas Categorias//
 	/////////////////////////////////////////////////
 		
-	const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
+	// const todosProdutos: Array<Produto> = await produtoRepo.recuperarTodos();
 
-	console.log(todosProdutos);
+	// console.log(todosProdutos);
 
     ///////////////////////////////////////////////
 	//Atualizar Produto - Sem Atulizar Categorias//
