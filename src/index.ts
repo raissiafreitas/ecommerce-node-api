@@ -1,16 +1,14 @@
-
 import { Categoria } from '@modules/catalogo/domain/categoria/categoria.entity';
 import { Produto } from '@modules/catalogo/domain/produto/produto.entity';
 import { StatusProduto } from '@modules/catalogo/domain/produto/produto.types';
 import { CategoriaPrismaRepository } from '@modules/catalogo/infra/database/categoria.prisma.repository';
 import { ProdutoPrismaRepository } from '@modules/catalogo/infra/database/produto.prisma.repository';
 import { DomainException } from '@shared/domain/domain.exception';
-import { prisma } from 'main/infra/database/orm/prisma/client'; 
+import { prisma } from 'main/infra/database/orm/prisma/client';
 import { categoriaRepositorio as categoriaRepo } from '@modules/catalogo/infra/database';
 import { produtoRepositorio as produtoRepo } from '@modules/catalogo/infra/database';
-import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recuperarCategoriaPorIdUseCase, recuperarTodasCategorias } from '@modules/catalogo/application/use-case';
+import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutoPorIdUseCase, recuperarTodasCategoriasUseCase } from '@modules/catalogo/application/use-case';
 import { InserirCategoriaUseCase } from '@modules/catalogo/application/use-case/inserir-categoria/inserir-categoria.use.case'; 
-
 
 async function main() {
    
@@ -30,40 +28,36 @@ async function main() {
     //Recuperar Todas as Categorias//
     /////////////////////////////////
    
-    //console.log(await recuperarTodasCategorias.execute());
+    //console.log(await recuperarTodasCategoriasUseCase.execute());
 
     /////////////////////
     //Inserir Categoria//
     /////////////////////
    
-    // console.log(await inserirCategoriaUseCase.execute({
-    //    nome:'Banheiro'
-    // }));
+    //console.log(await inserirCategoriaUseCase.execute({
+    //    nome:'Cozinha'
+    //}));
 
     ///////////////////////s
     //Atualizar Categoria//
     ///////////////////////
      
-    // console.log(await atualizarCategoriaUseCase.execute({
-    //    id:"fdc2b10d-6c94-45ec-86dc-37504987e01c",
+    //console.log(await atualizarCategoriaUseCase.execute({
+    //    id: "75a441d9-988b-46f0-a889-7ccafcb18f54",
     //    nome: "Cozinha Americana"
-    // }));
+    //}));
 
     /////////////////////
     //Deletar Categoria//
     /////////////////////
    
-    // console.log(await deletarCategoriaUseCase.execute("fdc2b10d-6c94-45ec-86dc-37504987e01c"));
+    //console.log(await deletarCategoriaUseCase.execute("75a441d9-988b-46f0-a889-7ccafcb18f54"));
 
     ////////////////////////////////
     //Recuperar Produto por UUID//
     ////////////////////////////////
        
-    //const produtoRecuperado: Produto | null = await produtoRepo.recuperarPorUuid("7f35c7f4-ce26-4503-bfce-0afd937adfb8");
-
-    //console.log(produtoRecuperado);
-
-    //console.log(produtoRecuperado?.estaDeletado());
+    // console.log(await recuperarProdutoPorIdUseCase.execute("74cd9f95-7985-435c-adeb-4d66752e036c"));
 
     ///////////////////
     //Inserir Produto//
