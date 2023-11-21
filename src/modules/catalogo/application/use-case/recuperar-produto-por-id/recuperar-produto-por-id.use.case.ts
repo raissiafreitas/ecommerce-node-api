@@ -5,7 +5,7 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
 import { IProduto } from "@modules/catalogo/domain/produto/produto.types";
 import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exeception";
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
 import { ProdutoMap } from "@modules/catalogo/infra/mappers/produto.map";
 
 class RecuperarProdutoPorIdUseCase
