@@ -42,10 +42,10 @@ async function main() {
     //Atualizar Categoria//
     ///////////////////////
      
-    //console.log(await atualizarCategoriaUseCase.execute({
+    // console.log(await atualizarCategoriaUseCase.execute({
     //    id: "75a441d9-988b-46f0-a889-7ccafcb18f54",
     //    nome: "Cozinha Americana"
-    //}));
+    // }));
 
     /////////////////////
     //Deletar Categoria//
