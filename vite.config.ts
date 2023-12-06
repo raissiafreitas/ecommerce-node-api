@@ -15,7 +15,12 @@ import { defineConfig } from 'vitest/config'
                     {
                         find: '@shared',
                         replacement: path.resolve(__dirname, "src/shared"),
-                    },                   
+                    },  
+                    
+                    {
+                        find: "@main",
+                        replacement: path.resolve(__dirname, "src/main"),
+                    }
                 ]
             }
         })
