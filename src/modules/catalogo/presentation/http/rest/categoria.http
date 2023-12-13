@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recuperar Um Categoria por ID
-GET http://{{host}}:{{port}}/{{apiversion}}/categorias/667611ad-2ae8-4b2c-b11d-94a1f4e30da2
+GET http://{{host}}:{{port}}/{{apiversion}}/categorias/76bc2b66-766a-46bd-a0e7-2889985f5b02
 
 
 ### Recuperar Todas as Categorias
@@ -28,7 +28,7 @@ Content-type: application/json
 }
 
 ### Deletar Categoria
-DELETE  http://{{host}}:{{port}}/{{apiversion}}/categorias/49b53bc5-3b54-4be2-87eb-13a896d5bd04
+DELETE  http://{{host}}:{{port}}/{{apiversion}}/categorias/76bc2b66-766a-46bd-a0e7-2889985f5b02
 
 
 

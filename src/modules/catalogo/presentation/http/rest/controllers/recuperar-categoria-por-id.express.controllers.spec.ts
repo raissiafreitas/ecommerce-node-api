@@ -1,10 +1,12 @@
+
 import { RecuperarCategoriaPorIdUseCase } from "@modules/catalogo/application/use-case/recuperar-categoria-por-id/recuperar-categoria-por-id.use-case";
 import { Request, Response } from "express";
 import { Mock, afterEach, beforeAll, describe, expect, test, vi, vitest } from "vitest";
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { RecuperarCategoriaPorIdExpressController } from "./recuperar-categoria-por-id.express.controllers"; 
 import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
-import { CategoriaApplicationExceptions } from "@modules/catalogo/application/exception/categoria.application.exeception"; 
+import { CategoriaApplicationExceptions } from "@modules/catalogo/application/exception/categoria.application.exeception";
+import { HttpErrors } from "@shared/presentation/http/http.error";
 
 
 let requestMock: MockProxy<Request>;
@@ -46,7 +48,7 @@ describe('Controller Express: Recuperar Categoria por ID', () => {
         await recuperarCategoriaPorIdController.recuperar(requestMock, responseMock, nextMock);
 
         //Então (Then
-		expect(recuperarCategoriaPorIdUseCaseMock.execute).toHaveBeenCalledWith(categoriaInputDTO.id);
+        expect(recuperarCategoriaPorIdUseCaseMock.execute).toHaveBeenCalledWith(categoriaInputDTO.id);
         expect(responseMock.status).toHaveBeenCalledWith(200);
         expect(responseMock.json).toHaveBeenCalledWith(categoriaInputDTO);
         expect(nextMock).not.toHaveBeenCalled();
@@ -57,20 +59,20 @@ describe('Controller Express: Recuperar Categoria por ID', () => {
 
         //Dado (Given)
         const categoriaInputDTO: ICategoria = {
-            id: "76bc2b66-766a-46bd-a0e7-2889985f5b02",
-            nome: "Sala de Televisão"
+            id: "80830927-8c3e-4db9-9ddf-30ea191f139b",
+            nome: "Cama"
         }
 
         requestMock.params.id = categoriaInputDTO.id as string;
         recuperarCategoriaPorIdUseCaseMock.execute.mockRejectedValue(new CategoriaApplicationExceptions.CategoriaNaoEncontrada());
         responseMock.status.mockReturnThis();
 
-        //Quando (When) 
+        //Quando (When)
         await recuperarCategoriaPorIdController.recuperar(requestMock, responseMock, nextMock);
 
         expect(recuperarCategoriaPorIdUseCaseMock.execute).toHaveBeenCalledWith(categoriaInputDTO.id);
         expect(nextMock).toHaveBeenCalled();
-        expect(nextMock.mock.lastCall[0].name).toBe(CategoriaApplicationExceptions.CategoriaNaoEncontrada.name);
+        expect(nextMock.mock.lastCall[0].name).toBe(HttpErrors.NotFoundError.name);
 
     });
 
