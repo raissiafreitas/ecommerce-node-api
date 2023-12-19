@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ExpressController } from "@shared/presentation/http/express.controller";
-import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
-import { RecuperarTodosProdutosUseCase } from "@modules/catalogo/application/use-case/recuperar-todos-produtos.use.case";
+import { RecuperarTodosProdutosUseCase } from "@modules/catalogo/application/use-case/recuperar-todos-produtos/recuperar-todos-produtos.use.case";
 import { IProduto } from "@modules/catalogo/domain/produto/produto.types";
 
 
