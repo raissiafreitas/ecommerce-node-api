@@ -13,10 +13,12 @@ GET http://{{host}}:{{port}}/{{apiversion}}/categorias
 ### Inserir Uma Categoria
 POST http://{{host}}:{{port}}/{{apiversion}}/categorias
 Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNGI0NTdhLTk3NTktNDE4Mi1iOTY5LWJkZjk1OTliYWYwNSIsIm5vbWUiOiJSYWlzc2lhIiwiZW1haWwiOiJyYWlzc2lhQG1haWwuY29tIiwidGlwbyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MDQ4NDYxNzQsImV4cCI6MTcwNDg0OTc3NH0.5PWjMHKJfThfYM3sH0df4TFhVemlt3rmbgSdJnWdkNM
 
 {
-    "nome":"Sala de Estar"
+    "nome":"Sala de Televisão"
 }
+
 
 ### Atualizar Categoria
 PUT  http://{{host}}:{{port}}/{{apiversion}}/categorias/76bc2b66-766a-46bd-a0e7-2889985f5b02
