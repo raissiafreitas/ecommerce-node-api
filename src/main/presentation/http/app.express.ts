@@ -5,6 +5,7 @@ import compression from 'compression';
 import { customMorganMiddleware } from "./middlewares/custom-morgan.middleware"; 
 import { errorLogger } from "./middlewares/error-logger.middleware";
 import { errorResponder } from "./middlewares/error-responser.middleware";
+import { swaggerDocumentation } from "./customizers/swagger-documentation.customizers"; 
 import cors from "cors";
 
 
@@ -30,6 +31,9 @@ const createExpressApplication = async (): Promise<Application>  => {
    
     //Middlewares de Rotas
     app.use('/api/v1', apiv1Router);
+
+   //Customizadores
+   swaggerDocumentation(app);
 
     //Middleware de Tratamento de Erros (Error Handling)
     app.use(errorLogger)

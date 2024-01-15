@@ -86,7 +86,7 @@ async function main() {
     console.log(produtoInserido);
     */
 
-   ,0
+   
 
     /////////////////////////////////////////////////
     //Recuperar Todos os Produtos e Suas Categorias//
